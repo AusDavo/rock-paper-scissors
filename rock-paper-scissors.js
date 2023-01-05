@@ -1,20 +1,3 @@
-//function getComputerChoice () {
-//    randomBelowThree = Math.floor(Math.random() * 3);
-//    if (randomBelowThree < 1) {
-//        getComputerChoice = "rock";
-//    }
-//    else if (randomBelowThree < 2) {
-//        getComputerChoice = "paper";
-//    }
-//    else {
-//        getComputerChoice = "scissors";
-//    }
-//}
-
-let computerSelection;
-let playerSelection;
-let gameOutcome;
-
 function getComputerChoice () {
     randomBelowThree = Math.floor(Math.random() * 3);
     (randomBelowThree < 1) ? computerSelection = "rock" :
@@ -27,8 +10,6 @@ function getPlayerChoice () {
     playerSelection = (prompt("Will you play rock, paper or scissors?", "rock")).toLowerCase();
     return(playerSelection);
 }
-
-console.log("You chose " + getPlayerChoice() + ". The computer chose " + getComputerChoice() + ". " + playRound(playerSelection, computerSelection) + " " + describeGame (gameOutcome, computerSelection));
 
 function playRound (playerSelection, computerSelection) {  
     
@@ -76,3 +57,15 @@ function describeGame (gameOutcome, computerSelection) {
     }        
 }
 
+for (let i = 0, winCount = 0, drawCount = 0; i < 5; i++) {   
+
+    let roundDescription = playRound(getPlayerChoice(), getComputerChoice());
+
+    let choicesCompared = describeGame(gameOutcome, computerSelection);
+
+    (gameOutcome == "win") ? winCount++ : null ;
+    (gameOutcome == "draw") ? drawCount++ : null ;
+    
+    alert("You chose " + playerSelection + ". The computer chose " + computerSelection + ". " + roundDescription + " " + choicesCompared + " You've won " + winCount + " of " + (i +1) + " games and drawn " + drawCount + ".");
+  
+}
