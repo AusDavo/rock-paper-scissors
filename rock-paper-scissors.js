@@ -5,12 +5,6 @@ function getComputerChoice () {
     computerSelection = "scissors";
     return(computerSelection)
 }
-
-//function getPlayerChoice () {
-//    playerSelection = (prompt("Will you play rock, paper or scissors?", "rock")).toLowerCase();
-//    return(playerSelection);
-//}
-
 function playRound (playerSelection, computerSelection) {  
     
     if (computerSelection == playerSelection) {
@@ -62,71 +56,58 @@ const buttonRock = document.getElementById("rock");
 const buttonPaper = document.getElementById("paper");
 const buttonScissors = document.getElementById("scissors");
 
+let i = 0;
+let winCount = 0;
+let drawCount = 0;
+
+
 buttonRock.addEventListener("click", function() {
     playerSelection = "rock";
     console.log('rock clicked');
-    i = 0;
-    winCount = 0;
-    drawCount = 0;
 
     let roundDescription = playRound(playerSelection, getComputerChoice());
 
     let choicesCompared = describeGame(gameOutcome, computerSelection);
 
+    i++;
     (gameOutcome == "win") ? winCount++ : null ;
     (gameOutcome == "draw") ? drawCount++ : null ;
 
-    alert("The computer chose " + computerSelection + ". " + roundDescription + " " + choicesCompared + " You've won " + winCount + " of " + (i +1) + " games and drawn " + drawCount + ".");
+    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
+    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
+    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
 });
-
+       
 buttonPaper.addEventListener("click", function() {
     playerSelection = "paper";
     console.log('paper clicked');
-    i = 0;
-    winCount = 0;
-    drawCount = 0;
 
     let roundDescription = playRound(playerSelection, getComputerChoice());
 
     let choicesCompared = describeGame(gameOutcome, computerSelection);
-
+    
+    i++;
     (gameOutcome == "win") ? winCount++ : null ;
     (gameOutcome == "draw") ? drawCount++ : null ;
 
-    alert("The computer chose " + computerSelection + ". " + roundDescription + " " + choicesCompared + " You've won " + winCount + " of " + (i +1) + " games and drawn " + drawCount + ".");
+    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
+    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
+    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
 });
 
 buttonScissors.addEventListener("click", function() {
     playerSelection = "scissors";
     console.log('scissors clicked');
-    i = 0;
-    winCount = 0;
-    drawCount = 0;
 
     let roundDescription = playRound(playerSelection, getComputerChoice());
 
     let choicesCompared = describeGame(gameOutcome, computerSelection);
 
+    i++;
     (gameOutcome == "win") ? winCount++ : null ;
     (gameOutcome == "draw") ? drawCount++ : null ;
 
-    alert("The computer chose " + computerSelection + ". " + roundDescription + " " + choicesCompared + " You've won " + winCount + " of " + (i +1) + " games and drawn " + drawCount + ".");
+    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
+    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
+    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
 });
-
-//for (let i = 0, winCount = 0, drawCount = 0; i < 5; i++) {   
-
-//i = 0;
-//winCount = 0;
-//drawCount = 0;
-
-//let roundDescription = playRound(playerSelection, getComputerChoice());
-
-//let choicesCompared = describeGame(gameOutcome, computerSelection);
-
-//(gameOutcome == "win") ? winCount++ : null ;
-//(gameOutcome == "draw") ? drawCount++ : null ;
-    
-//alert("You chose " + playerSelection + ". The computer chose " + computerSelection + ". " + roundDescription + " " + choicesCompared + " You've won " + winCount + " of " + (i +1) + " games and drawn " + drawCount + ".");
-  
-//}
-
