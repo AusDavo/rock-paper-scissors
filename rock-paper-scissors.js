@@ -56,38 +56,31 @@ const buttonRock = document.getElementById("rock");
 const buttonPaper = document.getElementById("paper");
 const buttonScissors = document.getElementById("scissors");
 
-let i = 0;
-let winCount = 0;
-let drawCount = 0;
-
 function incrementAndReport() {
 
-    let roundDescription = playRound(playerSelection, getComputerChoice());
-    let choicesCompared = describeGame(gameOutcome, computerSelection);
+    for (i = 0, winCount = 0, drawCount = 0, gameOutcome = ""; i < 5; i++) {
+        (gameOutcome == "win") ? winCount++ : null ;
+        (gameOutcome == "draw") ? drawCount++ : null ;
+        let roundDescription = playRound(playerSelection, getComputerChoice());
+        let choicesCompared = describeGame(gameOutcome, computerSelection);
 
-    i++;
-    (gameOutcome == "win") ? winCount++ : null ;
-    (gameOutcome == "draw") ? drawCount++ : null ;
-
-    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
+        document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
     The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
     You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
+    };
 }
 
 buttonRock.addEventListener("click", function() {
     playerSelection = "rock";
-    console.log('rock clicked');
     incrementAndReport();
 });
-       
+
 buttonPaper.addEventListener("click", function() {
     playerSelection = "paper";
-    console.log('paper clicked');
     incrementAndReport();
 });
 
 buttonScissors.addEventListener("click", function() {
     playerSelection = "scissors";
-    console.log('scissors clicked');
     incrementAndReport();
 });
