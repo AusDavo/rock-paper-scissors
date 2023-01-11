@@ -60,13 +60,9 @@ let i = 0;
 let winCount = 0;
 let drawCount = 0;
 
-
-buttonRock.addEventListener("click", function() {
-    playerSelection = "rock";
-    console.log('rock clicked');
+function incrementAndReport() {
 
     let roundDescription = playRound(playerSelection, getComputerChoice());
-
     let choicesCompared = describeGame(gameOutcome, computerSelection);
 
     i++;
@@ -76,38 +72,22 @@ buttonRock.addEventListener("click", function() {
     document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
     The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
     You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
+}
+
+buttonRock.addEventListener("click", function() {
+    playerSelection = "rock";
+    console.log('rock clicked');
+    incrementAndReport();
 });
        
 buttonPaper.addEventListener("click", function() {
     playerSelection = "paper";
     console.log('paper clicked');
-
-    let roundDescription = playRound(playerSelection, getComputerChoice());
-
-    let choicesCompared = describeGame(gameOutcome, computerSelection);
-    
-    i++;
-    (gameOutcome == "win") ? winCount++ : null ;
-    (gameOutcome == "draw") ? drawCount++ : null ;
-
-    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
-    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
-    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
+    incrementAndReport();
 });
 
 buttonScissors.addEventListener("click", function() {
     playerSelection = "scissors";
     console.log('scissors clicked');
-
-    let roundDescription = playRound(playerSelection, getComputerChoice());
-
-    let choicesCompared = describeGame(gameOutcome, computerSelection);
-
-    i++;
-    (gameOutcome == "win") ? winCount++ : null ;
-    (gameOutcome == "draw") ? drawCount++ : null ;
-
-    document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
-    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
-    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
+    incrementAndReport();
 });
