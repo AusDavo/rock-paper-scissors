@@ -55,32 +55,61 @@ let playerSelection = "";
 const buttonRock = document.getElementById("rock");
 const buttonPaper = document.getElementById("paper");
 const buttonScissors = document.getElementById("scissors");
+let i = 0;
+let winCount = 0;
+let drawCount = 0;
+
+
+function announceWinnerOrDraw (winCount, drawCount, i) {
+    if (winCount + (drawCount / 2) == i / 2) {
+        return("I declare this tournament a draw.");
+    } else if (winCount + (drawCount / 2) > i / 2) {
+        return("I declare you the winner!");
+    } else {
+        return("The computer is the winner!");
+    }
+}
+
 
 function incrementAndReport() {
 
-    for (i = 0, winCount = 0, drawCount = 0, gameOutcome = ""; i < 5; i++) {
-        (gameOutcome == "win") ? winCount++ : null ;
-        (gameOutcome == "draw") ? drawCount++ : null ;
-        let roundDescription = playRound(playerSelection, getComputerChoice());
-        let choicesCompared = describeGame(gameOutcome, computerSelection);
+    i++;
+       
+    let roundDescription = playRound(playerSelection, getComputerChoice(winCount, drawCount, i));
+    let choicesCompared = describeGame(gameOutcome, computerSelection);
 
-        document.getElementById("gameResults").textContent = `You chose ${playerSelection}. 
-    The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared} 
-    You have won ${winCount} of ${i} games and drawn ${drawCount}.`;
-    };
-}
+    (gameOutcome == "win") ? winCount++ : null ;
+    (gameOutcome == "draw") ? drawCount++ : null ;
+
+    if (i < 5) {
+        let msg = 
+        document.getElementById("gameResults").textContent += `Round ${i}: You chose ${playerSelection}. The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared}`;
+    } else {
+        document.getElementById("gameResults").textContent += `Round ${i}: You chose ${playerSelection}. The computer chose ${computerSelection}. ${roundDescription} ${choicesCompared}
+        Game over. You won ${winCount} of ${i} games and drew ${drawCount}. ${announceWinnerOrDraw()}`;
+    }
+};
+
+
 
 buttonRock.addEventListener("click", function() {
     playerSelection = "rock";
-    incrementAndReport();
+    console.log("rock");
+    if (i < 5) {
+       incrementAndReport();
+    }
 });
 
 buttonPaper.addEventListener("click", function() {
     playerSelection = "paper";
-    incrementAndReport();
+    if (i < 5) {
+        incrementAndReport();
+    }
 });
 
 buttonScissors.addEventListener("click", function() {
     playerSelection = "scissors";
-    incrementAndReport();
+    if (i < 5) {
+        incrementAndReport();
+    }
 });
